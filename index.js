@@ -22,8 +22,18 @@
 const express = require("express"); //importacion de express
 const app = express(); //creacion de la app
 
+// ROUTING
+// ------------
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/static/index.html"); //ruta del archivo html
+  res.send("Hello World");
+});
+
+app.get("/about", (req, res) => {
+  res.send("About Page");
+});
+
+app.use((req, res) => {
+  res.status(404).send("404 Not Found");
 });
 
 app.listen(3000); //puerto de escucha
