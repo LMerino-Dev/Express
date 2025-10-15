@@ -22,18 +22,26 @@
 const express = require("express"); //importacion de express
 const app = express(); //creacion de la app
 
-// ROUTING
+// METODOS HTTP
 // ------------
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("/products", (req, res) => {
+  res.send("GET Products");
 });
 
-app.get("/about", (req, res) => {
-  res.send("About Page");
+app.post("/products", (req, res) => {
+  res.send("POST Products");
 });
 
-app.use((req, res) => {
-  res.status(404).send("404 Not Found");
+app.put("/products", (req, res) => {
+  res.send("PUT Products");
+});
+
+app.delete("/products", (req, res) => {
+  res.send("DELETE Products");
+});
+
+app.patch("/products", (req, res) => {
+  res.send("PATCH Products");
 });
 
 app.listen(3000); //puerto de escucha
