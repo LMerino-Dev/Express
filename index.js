@@ -20,16 +20,30 @@
 // *-------------------------------------------------
 
 const express = require("express"); //importacion de express
+const morgan = require("morgan"); //importacion de morgan
+
 const app = express(); //creacion de la app
 app.use(express.json()); // define el tipo de request que va a recibir
 
 //* ------------
 //* MiddleWare
 //* ------------
-app.use((req, res, next) => {
-  console.log(`METHOD: [${req.method}] - ROUTE: [${req.url}]`);
-  next();
-});
+
+//? ____________
+//? Logger manual
+// app.use((req, res, next) => {
+//   console.log(`INFO ROUTE:
+//     DATE: [${new Date().toLocaleDateString()}]
+//     METHOD: [${req.method}]
+//     ROUTE: [${req.url}]
+//     BODY: [${JSON.stringify(req.body)}]
+//     QUERY: [${JSON.stringify(req.query)}]`);
+//   next();
+// });
+
+//? ____________
+//? Logger morgan
+app.use(morgan("dev"));
 
 //* ------------
 //* RUTAS
