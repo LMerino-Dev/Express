@@ -21,27 +21,25 @@
 
 const express = require("express"); //importacion de express
 const app = express(); //creacion de la app
+app.use(express.json()); // define el tipo de request que va a recibir
 
-// METODOS HTTP
-// ------------
-app.get("/products", (req, res) => {
-  res.send("GET Products");
+//* ------------
+//* MiddleWare
+//* ------------
+app.use((req, res, next) => {
+  console.log(`METHOD: [${req.method}] - ROUTE: [${req.url}]`);
+  next();
 });
 
-app.post("/products", (req, res) => {
-  res.send("POST Products");
+//* ------------
+//* RUTAS
+//* ------------
+app.get("/test", (req, res) => {
+  res.send("TEST PAGE");
 });
 
-app.put("/products", (req, res) => {
-  res.send("PUT Products");
-});
-
-app.delete("/products", (req, res) => {
-  res.send("DELETE Products");
-});
-
-app.patch("/products", (req, res) => {
-  res.send("PATCH Products");
+app.get("/test-two", (req, res) => {
+  res.send("TEST-TWO PAGE");
 });
 
 app.listen(3000); //puerto de escucha
