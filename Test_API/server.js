@@ -6,8 +6,9 @@ const morgan = require("morgan");
 //* SERVER CONFIGURATION
 //* ----------------------------------
 const app = express();
+app.set("case sensitive routing", true); //? Enable case sensitive routing
+app.set("appName", "Test API");
 const port = 3000;
-app.use(express.json());
 
 const products = [
   { id: 1, name: "Product 1", price: 100 },
@@ -24,6 +25,7 @@ const products = [
 
 //* MIDDLEWARES
 //* ----------------------------------
+app.use(express.json());
 app.use(morgan("dev"));
 
 //* ROUTES
@@ -70,4 +72,4 @@ app.get("/products/:id", (req, res) => {
 //* SERVER RUNNING
 //* ----------------------------------
 app.listen(port);
-console.log(`Server running at http://localhost:${port}/`);
+console.log(`Server ${app.get("appName")} at http://localhost:${port}/`);
