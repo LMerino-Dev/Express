@@ -21,6 +21,7 @@
 
 const express = require("express"); //importacion de express
 const morgan = require("morgan"); //importacion de morgan
+const path = require("path"); //importacion de path
 
 const app = express(); //creacion de la app
 app.use(express.json()); // define el tipo de request que va a recibir
@@ -59,7 +60,7 @@ app.get("/test-two", (req, res) => {
 //* ---------------------------------------------
 //* CARPETA DE ACCESO A ARCHIVOS ESTATICOS
 //* ---------------------------------------------
-app.use("/static", express.static("./static"));
+app.use("/static", express.static(path.join(__dirname, "src", "static")));
 
 app.listen(3000); //puerto de escucha
 console.log("Server on port 3000");
