@@ -56,5 +56,10 @@ app.get("/test-two", (req, res) => {
   res.send("TEST-TWO PAGE");
 });
 
+//* ---------------------------------------------
+//* CARPETA DE ACCESO A ARCHIVOS ESTATICOS
+//* ---------------------------------------------
+app.use("/static", express.static("./static"));
+
 app.listen(3000); //puerto de escucha
 console.log("Server on port 3000");
