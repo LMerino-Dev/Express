@@ -24,7 +24,11 @@ const morgan = require("morgan"); //importacion de morgan
 const path = require("path"); //importacion de path
 
 const app = express(); //creacion de la app
-app.use(express.json()); // define el tipo de request que va a recibir
+
+//* -----------------
+//* IMPORTAR RUTAS
+//* -----------------
+const HomeRoutes = require("./routes/home");
 
 //* ------------
 //* MiddleWare
@@ -42,9 +46,13 @@ app.use(express.json()); // define el tipo de request que va a recibir
 //   next();
 // });
 
-//? ____________
-//? Logger morgan
-app.use(morgan("dev"));
+app.use(morgan("dev")); // logger de peticiones morgan
+app.use(express.json()); // define el tipo de request que va a recibir
+
+//* -----------------
+//* RUTAS IMPORTADAS
+//* -----------------
+app.use(HomeRoutes); // Rutas de home
 
 //* ------------
 //* RUTAS
